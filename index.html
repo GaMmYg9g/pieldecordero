@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Undercover: El Impostor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a1a2e">
+</head>
+<body>
+    <div id="app">
+        <!-- El contenido se renderiza dinámicamente con JS -->
+    </div>
+
+    <!-- Pantallas modales (ventanas emergentes) -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h3 id="modal-title"></h3>
+            <div id="modal-body"></div>
+            <button class="btn btn-secondary" id="modal-close">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- Diálogo de confirmación para votación -->
+    <div id="voteModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Votación</h3>
+            <div id="voteModal-body">
+                <p>¿Por quién votas?</p>
+                <div id="vote-players-list" class="players-list"></div>
+            </div>
+            <button class="btn btn-primary" id="submitVoteBtn" disabled>Confirmar Voto</button>
+            <button class="btn btn-secondary" id="voteModal-close">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Diálogo para que el impostor intente adivinar la palabra -->
+    <div id="guessModal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Intento del Impostor</h3>
+            <p>Si eres el impostor, escribe la palabra secreta para ganar +2 puntos.</p>
+            <input type="text" id="guessInput" placeholder="Escribe la palabra...">
+            <button class="btn btn-primary" id="submitGuessBtn">Adivinar</button>
+            <button class="btn btn-secondary" id="guessModal-close">No adivinar</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
