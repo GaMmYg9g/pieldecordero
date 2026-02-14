@@ -858,7 +858,7 @@ function renderAsignarRoles() {
     } else {
         contenidoRol = `
             <div style="text-align: center;">
-                <p style="color: #4CAF50; font-size: 1.2rem; margin-bottom: 10px;">🐑 ¡ERES UNA OBEJA! Encuentra al LOBO antes de que sea tarde.</p>
+                <p style="color: #4CAF50; font-size: 1.2rem; margin-bottom: 10px;">🐑 ¡ERES UNA OVEJA! Encuentra al LOBO antes de que sea tarde.</p>
                 <div style="background: rgba(102,126,234,0.2); border: 2px solid #667eea; border-radius: 20px; padding: 20px; margin: 15px 0;">
                     <p style="color: white; font-size: 2.5rem; font-weight: bold; margin-bottom: 10px;">${gameState.palabraSecreta}</p>
                     <p style="color: #ffd700; font-size: 1.1rem;">📁 Categoría: ${gameState.categoriaSecreta}</p>
