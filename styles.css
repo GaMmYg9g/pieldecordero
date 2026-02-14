@@ -584,3 +584,376 @@ input[type=range] {
         transform: translate(-50%, 0);
     }
 }
+
+/* ===== ANIMACIONES PARA UNDERCOVER ===== */
+/* AÑADE ESTO AL FINAL DE TU ARCHIVO style.css EXISTENTE */
+
+/* Animaciones principales */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px #667eea; }
+    50% { box-shadow: 0 0 20px #667eea, 0 0 30px #764ba2; }
+    100% { box-shadow: 0 0 5px #667eea; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateY {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+/* Clases de utilidad para animaciones */
+.animate-fade-in {
+    animation: fadeInScale 0.5s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+.animate-pulse {
+    animation: pulse 1s infinite;
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.animate-glow {
+    animation: glow 2s infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.animate-bounce {
+    animation: bounceIn 0.3s ease;
+}
+
+/* Animación para tarjeta de rol */
+.rol-card {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.rol-card.revealed {
+    animation: rotateY 0.5s ease-out;
+}
+
+/* Animación para elementos de votación */
+.vote-count-badge {
+    animation: bounceIn 0.3s ease;
+}
+
+/* Mejora de hover para tarjetas de votación */
+.vote-player-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.vote-player-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.vote-player-card:active {
+    transform: scale(0.98);
+}
+
+/* Animación para modales */
+.modal-content {
+    animation: slideUp 0.3s ease;
+}
+
+/* Animación para botones */
+.btn {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+/* Animación para items de lista */
+.player-item, .word-item {
+    transition: all 0.2s ease;
+}
+
+.player-item:hover, .word-item:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+/* Animación para el indicador de votante actual */
+#nombreVotante {
+    transition: all 0.3s ease;
+}
+
+#nombreVotante.pulse {
+    animation: pulse 0.5s;
+}
+
+/* Estilo mejorado para el badge de votos */
+.vote-count-badge {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 10px rgba(255, 107, 107, 0.5);
+    z-index: 10;
+}
+
+/* Ajuste para la tarjeta de votación */
+.vote-player-card {
+    position: relative;
+}
+
+/* Efecto de brillo para elementos importantes */
+.glow-effect {
+    animation: glow 2s infinite;
+}
+
+/* Efecto de flotación para títulos */
+h1, h2 {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+    .animate-fade-in, .animate-slide-up {
+        animation-duration: 0.3s;
+    }
+    
+    .vote-player-card:hover {
+        transform: none; /* Quitar hover en móviles */
+    }
+}
+
+/* Clase para retrasos de animación */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* ===== ESTADÍSTICAS MEJORADAS ===== */
+.stats-container {
+    background: #0f0f1a;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #2a2a3a;
+    margin: 10px 0;
+}
+
+.stats-header-row {
+    display: grid;
+    grid-template-columns: 0.7fr 2fr 0.8fr 0.8fr 0.8fr 1fr;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    font-weight: bold;
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 2px solid #4a4a6a;
+}
+
+.stats-header-item {
+    text-align: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-rows-container {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: 0.7fr 2fr 0.8fr 0.8fr 0.8fr 1fr;
+    padding: 12px 10px;
+    color: #ddd;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #2a2a3a;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+}
+
+.stats-row:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.stats-row span {
+    text-align: center;
+}
+
+.stats-nombre {
+    text-align: left !important;
+    padding-left: 10px;
+    font-weight: 500;
+    color: white;
+}
+
+.stats-numero {
+    font-weight: bold;
+    color: #ffd700;
+}
+
+.pos-1 { 
+    color: gold; 
+    font-weight: bold; 
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.pos-2 { 
+    color: silver; 
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(192, 192, 192, 0.5);
+}
+
+.pos-3 { 
+    color: #cd7f32; 
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(205, 127, 50, 0.5);
+}
+
+.pos-rest { 
+    color: #888; 
+}
+
+/* Leyenda mejorada */
+.stats-legend {
+    background: #1e1e2e;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #3a3a4a;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.stats-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #a0a0a0;
+    font-size: 0.85rem;
+}
+
+.stats-legend-icon {
+    font-size: 1.2rem;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+    .stats-header-row {
+        grid-template-columns: 0.6fr 1.8fr 0.6fr 0.6fr 0.6fr 0.8fr;
+        font-size: 0.8rem;
+        padding: 12px 5px;
+    }
+    
+    .stats-row {
+        grid-template-columns: 0.6fr 1.8fr 0.6fr 0.6fr 0.6fr 0.8fr;
+        font-size: 0.8rem;
+        padding: 10px 5px;
+    }
+    
+    .stats-nombre {
+        padding-left: 5px;
+    }
+    
+    .stats-legend {
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px;
+    }
+    
+    .stats-legend-item {
+        font-size: 0.8rem;
+    }
+}
+
+/* Animación para las filas */
+@keyframes highlightRow {
+    0% {
+        background: rgba(102, 126, 234, 0.3);
+    }
+    100% {
+        background: transparent;
+    }
+}
+
+.stats-row.highlight {
+    animation: highlightRow 1s ease;
+}
