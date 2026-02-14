@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ovejasylobos-v1';
+const CACHE_NAME = 'ovejasylobos-v2';
 const urlsToCache = [
   'index.html',
   'style.css',
