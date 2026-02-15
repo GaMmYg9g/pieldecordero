@@ -67,19 +67,19 @@ h1 {
     font-size: 0.9rem;
 }
 
-/* Botones */
+/* Botones más pequeños */
 .btn {
-    padding: 15px 20px;
+    padding: 20px;  /* Antes: 15px 20px */
     border: none;
-    border-radius: 15px;
-    font-size: 1rem;
+    border-radius: 10px;  /* Antes: 15px */
+    font-size: 0.9rem;    /* Antes: 1rem */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
     width: 100%;
-    margin: 5px 0;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    margin: -10pxpx;        /* Antes: 5px 0 */
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3); /* Antes: 0 4px 6px */
 }
 
 .btn-primary {
@@ -956,4 +956,225 @@ h1, h2 {
 
 .stats-row.highlight {
     animation: highlightRow 1s ease;
+}
+
+/* ===== ESTILOS MEJORADOS PARA TODA LA APP ===== */
+
+/* Tarjetas con vidrio esmerilado */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Títulos con efecto neón */
+.neon-title {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 10px #667eea, 0 0 20px #764ba2;
+    margin-bottom: 15px;
+}
+
+/* Contenedor de orden de preguntas */
+.order-container {
+    background: linear-gradient(145deg, #2a2a4a, #1a1a3a);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #667eea;
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
+}
+
+.order-title {
+    color: #ffd700;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.order-names {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Botones con efectos mejorados */
+.btn-modern {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-modern:hover::before {
+    left: 100%;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-modern:active {
+    transform: translateY(0);
+}
+
+/* Botón de cambiar palabra */
+.btn-warning-modern {
+    background: linear-gradient(135deg, #ff9800, #f44336);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.4);
+}
+
+.btn-warning-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+}
+
+/* Tarjeta de jugador en votación */
+.vote-card-modern {
+    background: linear-gradient(145deg, #2a2a3a, #1e1e2e);
+    border-radius: 15px;
+    padding: 12px;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid #3a3a4a;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.vote-card-modern:hover {
+    border-color: #667eea;
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.vote-avatar-modern {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.5);
+}
+
+.vote-info-modern {
+    flex: 1;
+}
+
+.vote-name-modern {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.vote-status-modern {
+    color: #a0a0a0;
+    font-size: 0.8rem;
+}
+
+/* Badge de votos */
+.vote-badge-modern {
+    background: #ff6b6b;
+    color: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.5);
+}
+
+/* Pantalla de juego */
+.game-screen-modern {
+    background: linear-gradient(145deg, #0a0a1a, #1a1a2e);
+    min-height: 100%;
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Indicador de ronda */
+.round-indicator {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 8px 15px;
+    color: #ffd700;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+/* Categoría con estilo */
+.category-tag {
+    background: rgba(102, 126, 234, 0.2);
+    border: 2px solid #667eea;
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* Mensaje de tiempo */
+.time-message {
+    color: #ccc;
+    font-size: 1.2rem;
+    text-align: center;
+    font-style: italic;
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 30px;
+    border: 1px dashed #667eea;
 }
