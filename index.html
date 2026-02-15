@@ -21,6 +21,15 @@
             <button class="btn btn-secondary" id="modal-close">Cerrar</button>
         </div>
     </div>
+    
+    <!-- Modal para versiones (INDEPENDIENTE) -->
+<div id="versionModal" class="modal hidden">
+    <div class="modal-content">
+        <h3 id="versionModal-title"></h3>
+        <div id="versionModal-body"></div>
+        <button class="btn btn-secondary" id="versionModal-close">Cerrar</button>
+    </div>
+</div>
 
     <!-- Diálogo de confirmación para votación -->
     <div id="voteModal" class="modal hidden">
@@ -46,7 +55,11 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Cargar los módulos en el orden correcto -->
+<script src="versiones.js"></script>
+<script src="tutorial.js"></script>
+<script src="app.js"></script>
+
     <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
