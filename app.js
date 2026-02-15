@@ -507,36 +507,36 @@ const pasosTutorial = [
         elemento: "btnStartGame",
         feedback: "¡Comenzamos! Verás la asignación de roles"
     },
-    {
-        id: 13,
-        titulo: "🎭 Mostrar Rol",
-        descripcion: "Toca '✨ Mostrar Rol' para revelar tu rol",
-        imagen: "✨",
-        pantalla: "asignarRolesTutorial",
-        accion: "clic",
-        elemento: "revelarRolTutorial",
-        feedback: "¡Mira qué rol te tocó!"
-    },
-    {
-        id: 14,
-        titulo: "🐺 Rol de Lobo",
-        descripcion: "Toca 'Continuar' para seguir",
-        imagen: "🐺",
-        pantalla: "asignarRolesTutorial",
-        accion: "clic",
-        elemento: "siguienteRolTutorial",
-        feedback: "Bien. Pasamos al siguiente"
-    },
-    {
-        id: 15,
-        titulo: "🐑 Rol de Oveja",
-        descripcion: "Toca 'Continuar' para seguir",
-        imagen: "🐑",
-        pantalla: "asignarRolesTutorial",
-        accion: "clic",
-        elemento: "siguienteRolTutorial",
-        feedback: "Perfecto. Todos tienen rol"
-    },
+{
+    id: 13,
+    titulo: "🎭 Mostrar Rol",
+    descripcion: "Toca la tarjeta para revelar tu rol",
+    imagen: "✨",
+    pantalla: "asignarRolesTutorial",
+    accion: "clic",
+    elemento: "rolCardTutorial",  // Cambiado de "revelarRolTutorial" a "rolCardTutorial"
+    feedback: "¡Mira qué rol te tocó!"
+},
+{
+    id: 14,
+    titulo: "🐺 Rol de Lobo",
+    descripcion: "Este es el rol de lobo. Toca 'Continuar'",
+    imagen: "🐺",
+    pantalla: "asignarRolesTutorial",
+    accion: "clic",
+    elemento: "siguienteRolTutorial",
+    feedback: "Bien. Pasamos al siguiente"
+},
+{
+    id: 15,
+    titulo: "🐑 Rol de Oveja",
+    descripcion: "Este es el rol de oveja. Toca 'Continuar'",
+    imagen: "🐑",
+    pantalla: "asignarRolesTutorial",
+    accion: "clic",
+    elemento: "siguienteRolTutorial",
+    feedback: "Perfecto. Todos tienen rol"
+},
     {
         id: 16,
         titulo: "❓ Ronda de Preguntas",
@@ -1851,70 +1851,96 @@ function renderStatsTutorial() {
     app.innerHTML = html;
 }
 
+// ---------- RENDER ASIGNAR ROLES PARA TUTORIAL (VERSIÓN SIMPLIFICADA) ----------
 function renderAsignarRolesTutorial() {
     let paso = pasosTutorial[tutorialPasoActual];
-    let esLobo = (paso && (paso.id === 13 || paso.id === 14));
     
-    let contenidoRol = esLobo ? `
-        <div style="text-align: center;">
-            <p style="font-size: 2.5rem; color: #ff6b6b; text-shadow: 0 0 20px #ff0000;">🐺 ERES EL LOBO</p>
-            <div style="background: rgba(255,215,0,0.15); border: 3px solid #ffd700; border-radius: 25px; padding: 20px;">
-                <p style="color: #ffd700;">📁 Categoría: Animales</p>
-                <p style="color: white;">(Debes adivinar la palabra)</p>
+    // Determinar qué rol mostrar según el ID del paso
+    let esLobo = (paso.id === 13 || paso.id === 14);
+    let esOveja = (paso.id === 15);
+    
+    console.log(`🎭 Tutorial - Paso ${paso.id}: ${esLobo ? 'LOBO' : (esOveja ? 'OVEJA' : 'DESCONOCIDO')}`);
+    
+    let contenidoRol = '';
+    
+    if (esLobo) {
+        contenidoRol = `
+            <div style="text-align: center; padding: 10px;">
+                <p style="font-size: 2.2rem; color: #ff6b6b; text-shadow: 0 0 15px #ff0000; margin-bottom: 15px;">🐺 ERES EL LOBO</p>
+                <div style="background: rgba(255,215,0,0.15); border: 3px solid #ffd700; border-radius: 25px; padding: 20px;">
+                    <p style="color: #ffd700; font-size: 1.2rem;">📁 Categoría: Animales</p>
+                    <p style="color: #a0a0a0; font-size: 0.9rem; margin-top: 10px;">(Debes adivinar la palabra)</p>
+                </div>
             </div>
-        </div>
-    ` : `
-        <div style="text-align: center;">
-            <p style="color: #4CAF50; font-size: 2rem;">🐑 ERES UNA OVEJA</p>
-            <div style="background: rgba(102,126,234,0.15); border: 3px solid #667eea; border-radius: 25px; padding: 25px;">
-                <p style="color: white; font-size: 3rem; font-weight: bold;">LOBO</p>
-                <p style="color: #ffd700;">📁 Animales</p>
+        `;
+    } else if (esOveja) {
+        contenidoRol = `
+            <div style="text-align: center; padding: 10px;">
+                <p style="color: #4CAF50; font-size: 2rem; margin-bottom: 15px; text-shadow: 0 0 10px #00ff00;">🐑 ERES UNA OVEJA</p>
+                <div style="background: rgba(102,126,234,0.15); border: 3px solid #667eea; border-radius: 25px; padding: 25px;">
+                    <p style="color: white; font-size: 2.5rem; font-weight: bold; margin-bottom: 10px;">LOBO</p>
+                    <p style="color: #ffd700; font-size: 1.2rem;">📁 Animales</p>
+                    <p style="color: #a0a0a0; font-size: 0.9rem; margin-top: 10px;">(Tú ves la palabra, el lobo no)</p>
+                </div>
             </div>
-        </div>
-    `;
+        `;
+    }
     
     let html = `
         <div class="screen" style="justify-content: center; padding: 15px;">
-            <div class="rol-card" style="background: linear-gradient(145deg, #2a2a4a, #1a1a3a); border: 3px solid #667eea; border-radius: 40px; padding: 30px;">
-                <h2 style="font-size: 2.5rem; color: white; text-align: center;">Jugador 1</h2>
-                <div style="margin-top: 20px;">${contenidoRol}</div>
+            <!-- Barra de progreso -->
+            <div style="background: rgba(255,255,255,0.1); border-radius: 30px; height: 8px; margin: 10px 0 20px 0;">
+                <div style="background: linear-gradient(135deg, #667eea, #764ba2); width: ${((tutorialPasoActual + 1) / pasosTutorial.length) * 100}%; height: 8px; border-radius: 30px;"></div>
+            </div>
+            <p style="color: #a0a0a0; text-align: center; margin-bottom: 15px;">Paso ${tutorialPasoActual + 1} de ${pasosTutorial.length}</p>
+            
+            <!-- Tarjeta de rol - SIN ANIMACIÓN COMPLEJA -->
+            <div id="tarjetaRol" class="rol-card" style="background: linear-gradient(145deg, #2a2a4a, #1a1a3a); border: 3px solid #667eea; border-radius: 40px; padding: 30px 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); min-height: 300px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                <!-- Contenido que cambia con display -->
+                <div id="contenidoRol" style="width: 100%;">
+                    <h2 style="font-size: 2.5rem; color: white; text-align: center; text-shadow: 0 0 15px #667eea; margin-bottom: 20px;">Jugador 1</h2>
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 20px; padding: 15px; text-align: center;">
+                        <p style="color: #ffd700; font-size: 1.1rem;">👆 Toca el botón para revelar</p>
+                    </div>
+                </div>
             </div>
             
-            ${esLobo ? 
-                '<button class="btn-modern" id="revelarRolTutorial" style="margin-top: 20px;">✨ Mostrar Rol</button>' : 
-                '<button class="btn-modern" id="siguienteRolTutorial" style="margin-top: 20px; background: linear-gradient(135deg, #00b09b, #96c93d);">➡️ Continuar</button>'
-            }
+            <!-- Botón Mostrar Rol -->
+            <button class="btn-modern" id="revelarRolBtn" style="margin-top: 20px; padding: 15px; font-size: 1.2rem; background: linear-gradient(135deg, #667eea, #764ba2);">
+                ✨ Mostrar Rol
+            </button>
+            
+            <!-- Botón de continuar (inicialmente oculto) -->
+            <button class="btn-modern" id="siguienteRolBtn" style="display: none; margin-top: 20px; background: linear-gradient(135deg, #00b09b, #96c93d); padding: 15px; font-size: 1.2rem;">
+                ➡️ Continuar
+            </button>
         </div>
     `;
     app.innerHTML = html;
     
-    if (document.getElementById('revelarRolTutorial')) {
-        document.getElementById('revelarRolTutorial').addEventListener('click', () => {
-            SoundEffects.playRevealSound();
-            document.querySelector('.rol-card').innerHTML = `
-                <h2 style="font-size: 2.5rem; color: white;">Jugador 1</h2>
-                ${contenidoRol}
-                <button class="btn-modern" id="siguienteRolTutorial" style="margin-top: 20px; background: linear-gradient(135deg, #00b09b, #96c93d);">➡️ Continuar</button>
-            `;
-            
-            document.getElementById('siguienteRolTutorial').addEventListener('click', () => {
-                let overlay = document.getElementById('tutorialOverlay');
-                if (overlay) overlay.remove();
-                tutorialPasoActual++;
-                mostrarPasoTutorial();
-            });
-        });
-    }
+    // Configurar botón Mostrar Rol
+    document.getElementById('revelarRolBtn').addEventListener('click', function() {
+        SoundEffects.playRevealSound();
+        
+        // Cambiar el contenido de la tarjeta directamente
+        document.getElementById('contenidoRol').innerHTML = contenidoRol;
+        
+        // Ocultar botón Mostrar Rol y mostrar botón Continuar
+        this.style.display = 'none';
+        document.getElementById('siguienteRolBtn').style.display = 'block';
+    });
     
-    if (document.getElementById('siguienteRolTutorial')) {
-        document.getElementById('siguienteRolTutorial').addEventListener('click', () => {
-            let overlay = document.getElementById('tutorialOverlay');
-            if (overlay) overlay.remove();
-            tutorialPasoActual++;
-            mostrarPasoTutorial();
-        });
-    }
+    // Configurar botón Continuar
+    document.getElementById('siguienteRolBtn').addEventListener('click', () => {
+        let overlay = document.getElementById('tutorialOverlay');
+        if (overlay) overlay.remove();
+        
+        tutorialPasoActual++;
+        mostrarPasoTutorial();
+    });
 }
+
+//Render Juego Tutorial
 
 function renderJuegoTutorial() {
     let html = `
@@ -1936,6 +1962,7 @@ function renderJuegoTutorial() {
     app.innerHTML = html;
 }
 
+// ---------- RENDER VOTACIÓN PARA TUTORIAL ----------
 function renderVotacionTutorial() {
     let html = `
         <div class="screen" style="padding: 15px;">
@@ -1974,8 +2001,14 @@ function renderVotacionTutorial() {
         </div>
     `;
     app.innerHTML = html;
+    
+    // 🔥 IMPORTANTE: Configurar el evento para mostrar el modal
+    document.getElementById('finalizarVotacionBtnTutorial').addEventListener('click', () => {
+        mostrarModalResultadoTutorial();
+    });
 }
 
+// ---------- MOSTRAR MODAL DE RESULTADO PARA TUTORIAL ----------
 function mostrarModalResultadoTutorial() {
     let modal = document.createElement('div');
     modal.id = 'tutorialModal';
@@ -1988,25 +2021,38 @@ function mostrarModalResultadoTutorial() {
         justify-content: center;
         align-items: center;
         padding: 20px;
+        animation: fadeInScale 0.3s ease;
     `;
     
     modal.innerHTML = `
         <div style="background: linear-gradient(135deg, #00b09b, #96c93d); border-radius: 30px; padding: 30px; max-width: 350px; border: 3px solid white; text-align: center;">
-            <div style="font-size: 4rem;">🎉</div>
-            <h2 style="color: white;">¡LOBO DESCUBIERTO!</h2>
+            <div style="font-size: 4rem; margin-bottom: 15px;">🎉</div>
+            <h2 style="color: white; font-size: 1.8rem; margin-bottom: 15px;">¡LOBO DESCUBIERTO!</h2>
             <div style="background: rgba(0,0,0,0.3); border-radius: 15px; padding: 15px; margin: 15px 0;">
-                <p style="color: #ffd700;">🐺 El Lobo era: Jugador 1</p>
+                <p style="color: #ffd700; font-size: 1.2rem;">🐺 El Lobo era:</p>
+                <p style="color: white; font-size: 2rem; font-weight: bold;">Jugador 1</p>
             </div>
-            <button id="tutorialModalCloseBtn" class="btn-modern" style="width: 100%; background: white; color: #1a1a2e;">✖ Cerrar</button>
+            <p style="color: white; margin-bottom: 20px;">✅ ¡Correcto! Has descubierto al lobo.</p>
+            
+            <button id="tutorialModalCloseBtn" class="btn-modern" style="background: white; color: #1a1a2e; width: 100%; padding: 15px; font-size: 1.2rem;">✖ Cerrar</button>
         </div>
     `;
     
     document.body.appendChild(modal);
     
+    // Configurar botón cerrar
     document.getElementById('tutorialModalCloseBtn').addEventListener('click', () => {
         modal.remove();
-        tutorialPasoActual++;
-        mostrarPasoTutorial();
+        
+        // Eliminar overlay del tutorial si existe
+        let overlay = document.getElementById('tutorialOverlay');
+        if (overlay) overlay.remove();
+        
+        // Avanzar al siguiente paso
+        setTimeout(() => {
+            tutorialPasoActual++;
+            mostrarPasoTutorial();
+        }, 500);
     });
 }
 
